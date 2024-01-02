@@ -5,14 +5,9 @@
 
 == What You Need
 
-:java_version: 17
-include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/main/prereq_editor_jdk_buildtools.adoc[]
+Java SDK 17
 
-
-include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/main/how_to_complete_this_guide.adoc[]
-
-[[initial]]
-== Create the Backend Services
+== Configure the AzSQL details
 
 Execute the following script on the AzSQL database
 
@@ -33,3 +28,8 @@ Update the AzSQL database connection details in the following file
 link:initial/src/main/resources/application.properties[]
 ----
 ====
+
+
+== Build the application
+
+mvn clean package -Pproduction
