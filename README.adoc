@@ -56,6 +56,16 @@ link:initial/src/main/resources/sql/todo.table.sql[]
 ----
 ====
 
+
+Update the AzSQL database connection details in the following file
+
+====
+[source,properties]
+----
+link:initial/src/main/resources/application.properties[]
+----
+====
+
 == Vaadin Dependencies
 
 If you checked out the `initial` project, or you created your project with initializr,
