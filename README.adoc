@@ -1,19 +1,7 @@
 :toc:
 :icons: font
 :source-highlighter: prettify
-:project_id: gs-crud-with-vaadin
-
-This guide walks you through the process of building an application that uses a
-https://vaadin.com[Vaadin-based UI] on a Spring Data JPA based backend.
-
-== What You Will build
-
-You will build a Vaadin UI for a simple JPA repository.
-
-You can follow either of two different paths:
-
-* Starting from the `initial` project that is already in the project.
-* Making a fresh start.
+:project_id: chaos-app
 
 == What You Need
 
@@ -22,26 +10,6 @@ include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/
 
 
 include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/main/how_to_complete_this_guide.adoc[]
-
-[[scratch]]
-== Starting with Spring Initializr
-
-You can use this https://start.spring.io/#!type=maven-project&language=java&packaging=jar&jvmVersion=11&groupId=com.example&artifactId=crud-with-vaadin&name=crud-with-vaadin&description=Demo%20project%20for%20Spring%20Boot&packageName=com.example.crud-with-vaadin&dependencies=vaadin,data-jpa,h2[pre-initialized project] and click Generate to download a ZIP file. This project is configured to fit the examples in this tutorial.
-
-NOTE: You can also fork the project from Github and open it in your IDE or other editor.
-
-=== Manual Initialization (optional)
-
-If you want to initialize the project manually rather than use the links shown earlier, follow the steps given below:
-
-. Navigate to https://start.spring.io.
-This service pulls in all the dependencies you need for an application and does most of the setup for you.
-. Choose either Gradle or Maven and the language you want to use. This guide assumes that you chose Java.
-. Click *Dependencies* and select *Vaadin*, *Spring Data JPA* and *H2 Database*.
-. Click *Generate*.
-. Download the resulting ZIP file, which is an archive of a web application that is configured with your choices.
-
-NOTE: If your IDE has the Spring Initializr integration, you can complete this process from your IDE.
 
 [[initial]]
 == Create the Backend Services
@@ -65,36 +33,3 @@ Update the AzSQL database connection details in the following file
 link:initial/src/main/resources/application.properties[]
 ----
 ====
-
-== Vaadin Dependencies
-
-If you checked out the `initial` project, or you created your project with initializr,
-you have all necessary dependencies already set up.
-However, the rest of this section describes how to add Vaadin support to a fresh
-Spring project. Spring's Vaadin integration contains a Spring Boot starter dependency
-collection, so you need add only the following Maven snippet (or a corresponding Gradle
-configuration):
-
-====
-[source,xml,indent=0]
-----
-include::complete/pom.xml[tag=starter]
-----
-====
-
-The example uses a newer version of Vaadin than the default one brought in by the starter
-module. To use a newer version, define the Vaadin Bill of Materials (BOM) as follows:
-
-====
-[source,xml,indent=0]
-----
-include::complete/pom.xml[tag=bom]
-----
-====
-
-In developer mode, the dependency is enough, but When you are building for production,
-you need to enable your app for https://vaadin.com/docs/latest/production/production-build#enabling-production-builds[production builds].
-
-TIP: By default, Gradle does not support BOMs, but there is a handy
-https://plugins.gradle.org/plugin/io.spring.dependency-management[plugin for that]. Check out the
-https://github.com/spring-guides/gs-crud-with-vaadin/blob/main/complete/build.gradle[`build.gradle` build file for an example of how to accomplish the same thing].
