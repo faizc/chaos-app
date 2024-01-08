@@ -44,7 +44,7 @@ mvn clean package -Pproduction
 3. Commit the changes to the repository using "git push" command 
     * Execute git commit -am "added the ACR repository details"
 	* Execute git push 
-	
+4. Navigate to the "/.github/workflows/build.yml" file on the browser and then click on "View Runs" button and then click on the "Run Workflow" button. This should build the code and deploy the jar and image to the ACR. 
 
 == Load the ACR image to the Azure Kubernetes cluster 
 
