@@ -33,3 +33,24 @@ link:initial/src/main/resources/application.properties[]
 == Build the application
 
 mvn clean package -Pproduction
+
+== Build using Github workflow, deploy to Azure Container Registry
+
+1. Clone the repository and make it private
+2. Edit the "/.github/workflows/build.yml" file and update the ACR instance related details. 
+    * ACR_INSTANCE_NAME is the ACR instance name
+    * ACR_USERNAME is the ACR instance user 
+	* ACR_PASSWORD is the ACR instance password
+3. Commit the changes to the repository using "git push" command 
+    * Execute git commit -am "added the ACR repository details"
+	* Execute git push 
+	
+
+== Load the ACR image to the Azure Kubernetes cluster 
+
+1. az aks get-credentials --resource-group=<resource-group> --name=<aks-cluster-name>
+2. az aks update --resource-group=<resource-group> --name=<aks-cluster-name> --attach-acr <ACR_INSTANCE_NAME>
+3. kubectl run chaos-app --image=<ACR_INSTANCE_NAME>.azurecr.io/chaos-app:latest --namespace=chaos-testing
+4. kubectl expose pod chaos-app --type=LoadBalancer --port=80 --target-port=8080 --namespace=chaos-testing
+5. kubectl get services -o=jsonpath='{.items[*].status.loadBalancer.ingress[0].ip}'
+6. From the previous command, use the IP in the http://IP:8080/dashboard to load the application. If the application doesn't load check if there are no error during the deployment or the port is not blocked
